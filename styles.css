@@ -1,0 +1,2370 @@
+/* ---------------------------------------------------------------- */
+/* --- Complete and Final CSS Code (styles.css) --- */
+/* ---------------------------------------------------------------- */
+/* --- Global Body Styling (Background Image & Font) --- */
+body {
+    background-image: url('trnt.png'); 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0; 
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+    color: white; 
+}
+/* Smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+/* For modal content wrappers with overflow */
+.timeline-slide-text-wrapper,
+.sot-slide-text-wrapper,
+.bio-slide-text-wrapper,
+.poem-slide-text-wrapper,
+.summary-slide-text-wrapper {
+    scroll-behavior: smooth;
+}
+/* Add natural momentum scrolling */
+.timeline-slide-text-wrapper,
+.sot-slide-text-wrapper,
+.bio-slide-text-wrapper,
+.poem-slide-text-wrapper,
+.summary-slide-text-wrapper {
+    -webkit-overflow-scrolling: touch;
+}
+/* --- Styling for the Left-Aligned Content Container --- */
+.left-content {
+    position: absolute; 
+    top: 30%; 
+    left: 5%; 
+    max-width: 40%; 
+    text-align: left; 
+}
+.left-content h1 {
+    font-size: 5.5em; 
+    margin: 0 0 0px; 
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9), 
+                 1px 1px 2px rgba(0, 0, 0, 0.8);
+    line-height: 1.05; 
+    letter-spacing: 0.02em;
+}
+.left-content p {
+    font-size: 1.9em;
+    margin: 0 0 0px 15px; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.95),
+                 1px 1px 2px rgba(0, 0, 0, 0.7);
+    font-style: italic; 
+    font-weight: 500;
+}
+/* --- Styling for the Carousel Container (3D Flashcards) --- */
+.right-carousel {
+    position: fixed; 
+    top: 50%; 
+    left: 73%; 
+    transform: translate(-50%, -50%); 
+    perspective: 1000px; 
+    width: 280px; 
+    height: 270px;
+}
+.carousel-figure {
+    width: 90%;
+    height: 90%;
+    margin: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease-out; 
+    cursor: grab; 
+}
+.carousel-figure:active {
+    cursor: grabbing;
+}
+.carousel-figure .card-text {
+    position: absolute; 
+    width: 90%; 
+    height: 90%;
+    left: 5%; 
+    top: 5%; 
+    background-color: #E6D1AB; 
+    color: #3d2817; 
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5em; 
+    font-weight: bold;
+    box-shadow: 0 0 25px 8px rgba(139, 69, 19, 0.85),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 1; 
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.carousel-figure .card-text:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px 10px rgba(139, 69, 19, 0.95),
+                0 8px 20px rgba(0, 0, 0, 0.4);
+}
+/* ---------------------------------------------------------------- */
+/* --- MODAL (POP-UP) SHELL STYLING --- */
+/* ---------------------------------------------------------------- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: none; 
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* Modal Content/Box - VINTAGE LOOK (General Modals) */
+.modal-content {
+    background-color: #fcf8e8; 
+    margin: 5vh auto; 
+    padding: 35px; 
+    border: 3px solid #b58863; 
+    width: 80%; 
+    max-width: 850px; 
+    text-align: center;
+    border-radius: 5px; 
+    position: relative;
+    color: #4a3328; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    overflow-y: visible;
+    animation: slideDown 0.4s ease;
+}
+/* Modal Title - VINTAGE FONT */
+#modalTitle {
+    font-size: 2.8em; 
+    margin-top: 0;
+    font-family: 'Times New Roman', Times, serif; 
+    font-weight: bold;
+    border-bottom: 2px solid #b58863;
+    padding-bottom: 25px;
+    color: #3a251b; 
+}
+/* Close Button - VINTAGE COLORS */
+.close-button {
+    color: #7b684c; 
+    font-size: 45px; 
+    font-weight: normal;
+    position: absolute; 
+    top: 5px;
+    right: 25px;
+    z-index: 101;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+.close-button:hover,
+.close-button:focus {
+    color: #4a3328; 
+    text-decoration: none;
+    cursor: pointer;
+    transform: rotate(90deg);
+}
+/* Description Text Area */
+#modalText {
+    font-size: 1.15em;
+    text-indent: 2em;
+    font-family: Georgia, 'Palatino Linotype', Palatino, serif;
+    line-height: 1.6; 
+    text-align: justify; 
+    white-space: pre-wrap;
+    max-width: 100%;
+    margin: 25px auto; 
+    max-height: 40vh; 
+    overflow-y: auto; 
+    padding-right: 15px; 
+    color: #4a3328;
+    transition: opacity 0.4s ease;
+}
+/* Smooth scrollbar for modal text */
+#modalText::-webkit-scrollbar {
+    width: 8px;
+}
+#modalText::-webkit-scrollbar-track {
+    background: #e6d1ab;
+    border-radius: 4px;
+}
+#modalText::-webkit-scrollbar-thumb {
+    background: #7b684c;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+#modalText::-webkit-scrollbar-thumb:hover {
+    background: #5d4029;
+}
+/* ---------------------------------------------------------------- */
+/* --- TIMELINE STYLING --- */
+/* ---------------------------------------------------------------- */
+/* Timeline Container */
+.timeline-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 15px auto; /* smaller top/bottom margin and center horizontally */
+    flex-wrap: wrap;
+}
+.timeline-indent {
+    text-indent: 2em; /* adjust as needed */
+    margin-top: -1em; /* smaller spacing from previous paragraph */
+}
+/* Timeline Period Buttons */
+.timeline-period {
+    padding: 10px 22px;
+    background-color: #e6d1ab;
+    color: #3a251b;
+    border: 2px solid #7b684c;
+    border-radius: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+.timeline-period:hover {
+    background-color: #c5a676;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.timeline-period.active {
+    background-color: #5d4029;
+    color: #fcf8e8;
+    border-color: #b58863;
+    box-shadow: 0 0 12px rgba(93, 64, 41, 0.6),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+.timeline-period:active {
+    transform: translateY(0) scale(1.02);
+    transition: all 0.1s ease;
+}
+/* ---------------------------------------------------------------- */
+/* --- SCHOOL OF THOUGHT STYLING (.school-modal) --- */
+/* ---------------------------------------------------------------- */
+.school-modal .concept-icon-list {
+    display: grid;
+    grid-template-columns: 1fr repeat(3, 150px) 1fr; 
+    grid-template-rows: auto auto;
+    justify-content: center;
+    gap: 40px 75px;
+    padding: 20px 10px;
+}
+.school-modal .concept-card:nth-child(1) { grid-column: 2 / 3; grid-row: 1; }
+.school-modal .concept-card:nth-child(2) { grid-column: 3 / 4; grid-row: 1; }
+.school-modal .concept-card:nth-child(3) { grid-column: 4 / 5; grid-row: 1; }
+.school-modal .concept-card:nth-child(4) { grid-column: 2 / 4; grid-row: 2; place-self: start center; }
+.school-modal .concept-card:nth-child(5) { grid-column: 3 / 5; grid-row: 2; place-self: end center; }
+.school-modal .concept-card {
+    width: 150px;
+    min-height: 150px; 
+    position: static; 
+    padding: 15px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    text-align: center;
+    background-color: #e6d1ab;
+    border-radius: 8px;
+    border: 2px solid #7b684c;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s ease, 
+                background-color 0.4s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 2; 
+}
+.school-modal .concept-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: #c5a676;
+}
+/* --- Icon Container --- */
+.school-modal .concept-icon {
+    width: 70px; 
+    height: 70px;
+    margin-bottom: 6px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* SVG should scale properly */
+.school-modal .concept-icon svg {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+}
+/* --- Hover Lighten Effect for SVG Icons --- */
+.school-modal .concept-card:hover .concept-icon svg * {
+    stroke: rgba(255, 255, 255, 0.85) !important;
+    fill: rgba(255, 255, 255, 0.7) !important;
+    transition: all 0.3s ease-in-out;
+}
+/* Keep transparent areas clear */
+.school-modal .concept-card:hover .concept-icon svg [fill="none"] {
+    fill: none !important;
+}
+/* Title under icon */
+.school-modal .concept-title {
+    font-weight: bold;
+    font-size: 1em;
+    color: #3a251b;
+    line-height: 1.2;
+}
+/* Active state */
+.school-modal .concept-card.active {
+    background-color: #5d4029;
+    color: white;
+    border-color: #b58863;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(181, 136, 99, 0.9);
+}
+.school-modal .concept-card.active .concept-title {
+    color: white;
+}
+/* Active state SVG - pure white for clarity */
+.school-modal .concept-card.active .concept-icon svg * {
+    stroke: white !important;
+}
+.school-modal .concept-card.active .concept-icon svg circle,
+.school-modal .concept-card.active .concept-icon svg polygon,
+.school-modal .concept-card.active .concept-icon svg text {
+    fill: white !important;
+}
+/* ---------------------------------------------------------------- */
+/* --- NESTED MODAL STYLING --- */
+/* ---------------------------------------------------------------- */
+.nested-modal {
+    display: none; 
+    position: fixed; 
+    z-index: 150; 
+    left: 0;
+    top: 70px; 
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 0.3s ease;
+}
+.nested-modal-content {
+    background-color: #fcf8e8;
+    margin: 15vh auto; 
+    padding: 30px;
+    border: 4px double #5d4029; 
+    width: 70%;
+    max-width: 550px; 
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: #3a251b;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+#nestedModalTitle {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #5d4029;
+    border-bottom: 2px solid #7b684c;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+#nestedModalText {
+    font-size: 1.1em;
+    line-height: 1.6;
+    text-align: justify;
+    padding: 0 10px;
+    color: #4a3328;
+}
+.close-nested-button {
+    color: #5d4029;
+    font-size: 35px;
+    font-weight: normal;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+.close-nested-button:hover {
+    color: #3a251b;
+    transform: rotate(90deg);
+}
+/* ---------------------------------------------------------------- */
+/* --- Biography Modal Styling (FIXED) --- */
+/* ---------------------------------------------------------------- */
+/* Biography Modal Content - Main Container */
+.bio-modal-content {
+  background-color: #fcf8e8;
+  color: #4a3328;
+  margin: 5vh auto;
+  padding: 40px;
+  border: 3px solid #b58863;
+  border-radius: 10px;
+  width: 65%;
+  max-width: 700px;
+  max-height: 90vh;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.3s ease;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+/* Biography Modal Title */
+#bioModalTitle {
+    font-size: 2.8em; 
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-family: 'Times New Roman', Times, serif; 
+    font-weight: bold;
+    border-bottom: 2px solid #b58863;
+    padding-bottom: 20px;
+    color: #3a251b; 
+}
+/* Biography Carousel Container */
+.bio-carousel {
+    position: relative;
+    width: 80%;        
+    max-width: 600px;   
+    margin: 0 auto;     
+    padding: 15px 60px; 
+}
+.bio-carousel-container {
+    overflow: hidden;
+    border-radius: 10px;
+}
+.bio-carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+/* Individual Biography Item */
+.bio-item {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    background-color: #e6d1ab;
+    border-radius: 8px;
+    padding: 30px;      
+    border: 3px solid #7b684c;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+.bio-item:hover {
+    transform: scale(1.02);
+}
+/* Biography Images */
+.bio-item img {
+    width: 100%;
+    max-width: 400px;   
+    height: 300px;      
+    object-fit: cover;
+    border-radius: 8px;
+    border: 3px solid #7b684c;
+    margin-bottom: 15px;
+    transition: filter 0.3s ease, box-shadow 0.3s ease;
+}
+.bio-item:hover img {
+    filter: brightness(1.1);
+    box-shadow: 0 8px 20px rgba(93, 64, 41, 0.5);
+}
+/* Biography Caption */
+.bio-caption {
+    font-size: 1.4em;   
+    font-weight: 700;
+    color: #3a251b;
+    text-align: center;
+    line-height: 1.4;
+    margin-top: 5px;
+}
+/* Navigation Arrows */
+.bio-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #7b684c;
+    color: #fcf8e8;
+    border: none;
+    width: 50px;        
+    height: 50px;
+    border-radius: 50%;
+    font-size: 2em;     
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
+}
+.bio-arrow:hover {
+    background-color: #5d4029;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+.bio-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+.bio-arrow-left {
+    left: 5px;
+}
+.bio-arrow-right {
+    right: 5px;
+}
+/* Disable arrows when at start/end */
+.bio-arrow:disabled {
+    background-color: #c5a676;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.bio-arrow:disabled:hover {
+    transform: translateY(-50%) scale(1);
+}
+/* Dot Indicators */
+.bio-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;          
+    margin-top: 25px;   
+}
+.bio-dot {
+    width: 14px;        
+    height: 14px;
+    border-radius: 50%;
+    background-color: #c5a676;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #7b684c;
+}
+.bio-dot:hover {
+    background-color: #a8916d;
+    transform: scale(1.2);
+}
+.bio-dot.active {
+    background-color: #5d4029;
+    transform: scale(1.3);
+}
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .bio-modal-content {
+        width: 90%;
+        min-width: 700px;
+    }
+}
+@media (max-width: 1024px) {
+    .bio-modal-content {
+        width: 90%;
+        min-width: 600px;
+        padding: 40px;
+    }
+    .bio-carousel {
+        max-width: 700px;
+        padding: 15px 50px;
+    }
+    .bio-item img {
+        max-width: 400px;
+        height: 300px;
+    }
+}
+@media (max-width: 768px) {
+    .bio-modal-content {
+        width: 95%;
+        min-width: auto;
+        padding: 30px 20px;
+    }
+    .bio-carousel {
+        padding: 20px 50px;
+    }
+    .bio-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5em;
+    }
+    .bio-item {
+        padding: 20px;
+    }
+    .bio-item img {
+        max-width: 350px;
+        height: 250px;
+    }
+    .bio-caption {
+        font-size: 1.2em;
+    }
+}
+@media (max-width: 480px) {
+    .bio-modal-content {
+        width: 98%;
+        padding: 20px 10px;
+        margin: 3vh auto;
+    }
+    #bioModalTitle {
+        font-size: 2em;
+    }
+    .bio-carousel {
+        padding: 15px 40px;
+    }
+    .bio-item img {
+        max-width: 280px;
+        height: 200px;
+    }
+}
+/* ---------------------------------------------------------------- */
+/* --- BIOGRAPHY NESTED MODAL STYLING (SEPARATE) --- */
+/* ---------------------------------------------------------------- */
+.bio-nested-modal {
+    display: none; 
+    position: fixed; 
+    z-index: 150; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 0.3s ease;
+}
+.bio-nested-modal-content {
+    background-color: #fcf8e8;
+    margin: 5vh auto;    
+    padding: 30px;
+    border: 4px double #5d4029; 
+    width: 70%;
+    max-width: 700px;    
+    max-height: 80vh;    
+    overflow-y: auto;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: #3a251b;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#bioNestedModalTitle {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #5d4029;
+    border-bottom: 2px solid #7b684c;
+    padding: 10px 5px 10px 5px;
+    margin: -10px -10px 5px -10px;
+    position: sticky;
+    top: -30px;
+    background-color: #fcf8e8;
+    z-index: 10;
+}
+#bioNestedModalText {
+    font-size: 1.1em;
+    line-height: 1.7;
+    text-align: justify;
+    text-indent: 2em;   
+    padding: 0 20px;
+    color: #4a3328;
+}
+.close-bio-nested-button {
+    color: #5d4029;
+    font-size: 35px;
+    font-weight: normal;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+    z-index: 122;
+}
+.close-bio-nested-button:hover {
+    color: #3a251b;
+    transform: rotate(90deg);
+}
+/* Scrollbar styling for bio nested modal */
+.bio-nested-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+.bio-nested-modal-content::-webkit-scrollbar-track {
+    background: #e6d1ab;
+    border-radius: 4px;
+}
+.bio-nested-modal-content::-webkit-scrollbar-thumb {
+    background: #7b684c;
+    border-radius: 4px;
+}
+.bio-nested-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #5d4029;
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .bio-nested-modal-content {
+        width: 90%;
+        margin: 3vh auto;
+        padding: 25px 20px;
+    }
+}
+/* ---------------------------------------------------------------- */
+/* --- MERITS NESTED MODAL STYLING (SEPARATE) --- */
+/* ---------------------------------------------------------------- */
+.merits-nested-modal {
+    display: none; 
+    position: fixed; 
+    z-index: 150; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 0.3s ease;
+}
+.merits-nested-modal-content {
+    background-color: #fcf8e8;
+    margin: 25vh auto;
+    padding: 30px;
+    border: 4px double #5d4029; 
+    width: 70%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    color: #3a251b;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#meritsNestedModalTitle {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #5d4029;
+    border-bottom: 2px solid #7b684c;
+    padding: 10px 5px 10px 5px;
+    margin: -10px -10px 5px -10px;
+    position: sticky;
+    top: -30px;
+    background-color: #fcf8e8;
+    z-index: 10;
+}
+#meritsNestedModalText {
+    font-size: 1.1em;
+    line-height: 1.7;
+    text-align: justify;
+    text-indent: 2em;
+    padding: 0 20px;
+    color: #4a3328;
+}
+.close-merits-nested-button {
+    color: #5d4029;
+    font-size: 35px;
+    font-weight: normal;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+    z-index: 122;
+}
+.close-merits-nested-button:hover {
+    color: #3a251b;
+    transform: rotate(90deg);
+}
+/* Scrollbar styling for merits nested modal */
+.merits-nested-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+.merits-nested-modal-content::-webkit-scrollbar-track {
+    background: #e6d1ab;
+    border-radius: 4px;
+}
+.merits-nested-modal-content::-webkit-scrollbar-thumb {
+    background: #7b684c;
+    border-radius: 4px;
+}
+.merits-nested-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #5d4029;
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .merits-nested-modal-content {
+        width: 90%;
+        margin: 3vh auto;
+        padding: 25px 20px;
+    }
+}
+/* Poem Modal Content - Main Container */
+.poem-modal-content {
+    width: 70%;       
+    max-width: 800px; 
+    height: auto;     
+    max-height: 90vh; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    padding: 30px;
+    border-radius: 5px;
+    /* Hide scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+/* Hide scrollbar for Chrome/Safari */
+.poem-modal-content::-webkit-scrollbar {
+    display: none;
+}
+/* Poem Modal Title - Match the general modal title style */
+#poemModalTitle {
+    font-size: 2.8em; 
+    margin-top: 0;
+    font-family: 'Times New Roman', Times, serif; 
+    font-weight: bold;
+    border-bottom: 2px solid #b58863;
+    padding-bottom: 17px;
+    color: #3a251b; 
+}
+/* Poem Modal Close Button - Match general modal close button */
+.close-poem-button {
+    color: #7b684c; 
+    font-size: 45px; 
+    font-weight: normal;
+    position: absolute; 
+    top: 5px;
+    right: 25px;
+    z-index: 101;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+.close-poem-button:hover,
+.close-poem-button:focus {
+    color: #4a3328; 
+    text-decoration: none;
+    cursor: pointer;
+    transform: rotate(90deg);
+}
+/* Poem Modal Content */
+#poemModalContent {
+    margin-top: 25px;
+}
+/* Make sure video takes full width */
+#poemModalContent video {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+}
+/* ------------------- SUMMARY CAROUSEL ------------------- */
+.summary-modal-content {
+    background-color: #fcf8e8; 
+    margin: 4vh auto; 
+    padding: 30px; 
+    border: 3px solid #b58863; 
+    width: 80%; 
+    max-width: 750px; 
+    text-align: center;
+    border-radius: 5px; 
+    position: relative;
+    color: #4a3328; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    overflow-y: visible;
+    animation: slideDown 0.4s ease;
+}
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+#summaryModalTitle {
+    font-size: 2.8em; 
+    margin-top: 0;
+    font-family: 'Times New Roman', Times, serif; 
+    font-weight: bold;
+    border-bottom: 2px solid #b58863;
+    padding-bottom: 17px;
+    margin-bottom: 20px;
+    color: #3a251b; 
+}
+.summary-modal {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.summary-carousel {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.summary-carousel-container {
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f5ead1;
+    border: 2px solid #b58863;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    position: relative;
+    margin: 0 50px;
+    height: 450px;
+}
+.summary-carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.summary-slide {
+    min-width: 100%;
+    height: 100%;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+/* Slide counter - MOVED FURTHER FROM TITLE */
+.summary-carousel-container::before {
+    content: attr(data-slide);
+    position: absolute;
+    top: 10px;
+    right: 15px; 
+    background: #7b684c;
+    color: #fcf8e8;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 0.85em;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+}
+.summary-slide-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+    padding-right: 30px; 
+    padding-left: 30px; 
+}
+.summary-slide-title {
+    font: bold 1.65em 'Times New Roman', serif;
+    color: #3a251b;
+    line-height: 1.3;
+    margin: 0;
+    text-align: center;
+}
+/* Text wrapper with scrollbar */
+.summary-slide-text-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+}
+/* Scrollbar styling */
+.summary-slide-text-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+.summary-slide-text-wrapper::-webkit-scrollbar-track {
+    background: #e6d1ab;
+    border-radius: 4px;
+}
+.summary-slide-text-wrapper::-webkit-scrollbar-thumb {
+    background: #7b684c;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+.summary-slide-text-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #5d4029;
+}
+/* Text Content */
+.summary-slide-text {
+    font: 1.15em Georgia, 'Palatino Linotype', Palatino, serif;
+    line-height: 1.7;
+    color: #4a3328;
+    text-align: justify;
+    margin: 0 0 1em 0;
+    text-indent: 2em;
+}
+.summary-slide-text:last-child {
+    margin-bottom: 0;
+}
+.summary-slide-text:first-child {
+    margin-top: 0;
+}
+.summary-slide-text strong {
+    color: #3a251b;
+}
+.summary-slide-text em {
+    color: #5d4029;
+}
+/* Quote box */
+.summary-quote {
+    background: #d4c4a8;
+    border-left: 4px solid #7b684c;
+    padding: 12px 18px;
+    margin: 15px 0 10px 0;
+    font-style: italic;
+    font-size: 1.05em;
+    color: #3a251b;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+/* Visual container */
+.summary-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px;
+}
+/* Arrows */
+.summary-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #7b684c;
+    color: #fcf8e8;
+    border: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 1.8em;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.summary-arrow:hover {
+    background: #5d4029;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+.summary-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+.summary-arrow-left { 
+    left: 0;
+}
+.summary-arrow-right { 
+    right: 0;
+}
+.summary-arrow:disabled {
+    background: #c5a676;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+}
+.summary-arrow:disabled:hover {
+    transform: translateY(-50%) scale(1);
+}
+/* Dots */
+.summary-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding-bottom: 0;
+}
+.summary-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #c5a676;
+    border: 2px solid #7b684c;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.summary-dot:hover {
+    background: #a8916d;
+    transform: scale(1.2);
+}
+.summary-dot.active {
+    background: #5d4029;
+    transform: scale(1.3);
+}
+/* ------------------- RESPONSIVE ------------------- */
+@media (max-width: 768px) {
+    .summary-modal-content {
+        max-width: 90%;
+        padding: 30px 20px;
+    }
+    .summary-carousel-container {
+        margin: 0 45px;
+        height: 400px;
+    }
+}
+@media (max-width: 500px) {
+    .summary-modal-content {
+        padding: 25px 15px;
+    } 
+    .summary-carousel-container {
+        margin: 0 45px;
+        height: 350px;
+    } 
+    .summary-slide { 
+        padding: 20px 25px;
+    }  
+    .summary-slide-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px; 
+        margin-bottom: 10px;
+        flex-shrink: 0;
+        padding-right: 10px; 
+    }    
+    .summary-slide-title { 
+        font-size: 1.3em; 
+    }
+    .summary-slide-text {
+        font-size: 1em;
+        line-height: 1.55;
+        text-indent: 1.5em;
+    } 
+    .summary-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5em;
+    }
+    .summary-quote {
+        font-size: 1em;
+        padding: 10px 14px;
+        margin: 12px 0 8px 0;
+    }
+    .summary-slide-text-wrapper::-webkit-scrollbar {
+        width: 6px;
+    }
+}
+/* ------------------- ANALYSIS MODAL ------------------- */
+.analysis-modal-content {
+    background-color: #fcf8e8; 
+    margin: 5vh auto; 
+    padding: 30px; 
+    border: 3px solid #b58863; 
+    width: 80%; 
+    max-width: 900px; 
+    text-align: center;
+    border-radius: 5px; 
+    position: relative;
+    color: #4a3328; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    overflow-y: visible;
+    animation: slideDown 0.4s ease;
+}
+#analysisModalTitle {
+    font-size: 2.8em; 
+    margin-top: 0;
+    font-family: 'Times New Roman', Times, serif; 
+    font-weight: bold;
+    border-bottom: 2px solid #b58863;
+    padding-bottom: 15px;
+    margin-bottom: 18px;
+    color: #3a251b; 
+}
+.analysis-modal {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.analysis-carousel {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.analysis-carousel-container {
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f5ead1; 
+    border: 2px solid #b58863;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    position: relative;
+    margin: 0 50px;
+    height: 420px;
+}
+.analysis-carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.analysis-slide {
+    min-width: 100%;
+    height: 100%;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+/* Slide counter */
+.analysis-carousel-container::before {
+    content: attr(data-slide);
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: #7b684c;
+    color: #f5ead1;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 0.85em;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+}
+.analysis-slide-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 17px;
+    flex-shrink: 0;
+    padding-right: 33px;
+    padding-left: 3px;
+}
+.analysis-slide-title {
+    font: bold 1.85em 'Times New Roman', serif;
+    color: #3a251b;
+    line-height: 1.3;
+    margin: 0;
+    margin-top: -10px;
+    margin-bottom: -15px;
+    text-align: center;
+}
+/* Text wrapper with scrollbar */
+.analysis-slide-text-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+}
+/* Scrollbar styling */
+.analysis-slide-text-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+.analysis-slide-text-wrapper::-webkit-scrollbar-track {
+    background: #e6d1ab;
+    border-radius: 4px;
+}
+.analysis-slide-text-wrapper::-webkit-scrollbar-thumb {
+    background: #7b684c;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+.analysis-slide-text-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #5d4029;
+}
+/* Text Content */
+.analysis-slide-text {
+    font: 1.05em Georgia, 'Palatino Linotype', Palatino, serif;
+    line-height: 1.7;
+    color: #4a3328;
+    text-align: justify;
+    margin: 0 0 1em 0;
+}
+.analysis-slide-text:last-child {
+    margin-bottom: 0;
+}
+.analysis-slide-text:first-child {
+    margin-top: 0;
+}
+.analysis-slide-text.no-indent {
+    text-indent: 0;
+}
+/* Arrows */
+.analysis-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #7b684c;
+    color: #f5ead1;
+    border: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 1.8em;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.analysis-arrow:hover {
+    background: #5d4029;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+.analysis-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+.analysis-arrow-left { 
+    left: 0;
+}
+.analysis-arrow-right { 
+    right: 0;
+}
+.analysis-arrow:disabled {
+    background: #c5a676;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+}
+.analysis-arrow:disabled:hover {
+    transform: translateY(-50%) scale(1);
+}
+/* Navigation container */
+.analysis-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* Dots */
+.analysis-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.analysis-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #c5a676;
+    border: 2px solid #7b684c;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.analysis-dot:hover {
+    background: #a8916d;
+    transform: scale(1.2);
+}
+.analysis-dot.active {
+    background: #5d4029;
+    transform: scale(1.3);
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .analysis-carousel-container {
+        margin: 0 45px;
+        height: 400px;
+    }
+}
+@media (max-width: 500px) {
+    .analysis-carousel-container {
+        margin: 0 45px;
+        height: 350px;
+    } 
+    .analysis-slide { 
+        padding: 20px 25px;
+    }  
+    .analysis-slide-header {
+        padding-right: 10px;
+    }    
+    .analysis-slide-title { 
+        font-size: 1.3em; 
+    }
+    .analysis-slide-text {
+        font-size: 1em;
+        line-height: 1.55;
+        text-indent: 1.5em;
+    } 
+    .analysis-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5em;
+    }
+}
+/* Container for both stanza and description (Side-by-side layout) */
+.poem-layout-container {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    margin-top: -15px; 
+    width: 100%;
+}
+/* Stanza Box (Left Side) */
+.highlight-stanza {
+    background-color: #e6d1ab; 
+    color: #3a251b;
+    padding: 15px 25px;
+    margin: 20px 0 25px 0; 
+    border-left: 6px solid #b58863;
+    border-radius: 10px;
+    width: 45%; 
+    text-align: left;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    line-height: 1.8; 
+}
+/* Arrow pointing toward the stanza from the outside */
+.highlight-stanza::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 40%;
+    transform: translateY(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent #e6d1ab transparent transparent;
+}
+/* Descriptive Text (Right Side) */
+.stanza-description {
+    width: 45%; 
+    text-align: justify;
+    padding: 0 0 0 15px; 
+    color: #4a3328;
+    line-height: 1.2; 
+}
+/* Styling for the arrow icon in the description */
+.stanza-description .arrow-icon {
+    font-size: 1.7em; 
+    color:  #3a251b; 
+    margin-right: 10px;
+    display: inline-block;
+    font-weight: bold;
+}
+/* Container wrapping both stanzas */
+.rhyme-layout-container {
+    display: flex;               
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;                   
+    flex-wrap: wrap;             
+    margin: 20px 0 25px 0; 
+}
+/* Individual stanza block */
+.rhyme-stanza {
+    flex: 1;                     
+    min-width: 300px;            
+    background-color: #e6d1ab;   
+    color: #3a251b;
+    padding: 20px;
+    border: 2px solid #b58863;
+    border-radius: 5px;
+    line-height: 1.6;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.rhyme-word {
+    font-weight: bold;
+    color: #2a180f; 
+}
+/* ---------------------------------------------------------------- */
+/* --- MERITS MODAL CONTENT STYLING (Same size as Conventions) --- */
+/* ---------------------------------------------------------------- */
+.merits-modal-content {
+    background-color: #fcf8e8; 
+    margin: 5vh auto; 
+    padding: 35px; 
+    border: 3px solid #b58863; 
+    width: 80%; 
+    max-width: 850px; 
+    text-align: center;
+    border-radius: 5px; 
+    position: relative;
+    color: #4a3328; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    overflow-y: visible;
+    animation: slideDown 0.4s ease;
+}
+#meritsModalTitle {
+    font-size: 2.8em; 
+    margin-top: 0;
+    font-family: 'Times New Roman', Times, serif; 
+    font-weight: bold;
+    border-bottom: 2px solid #b58863;
+    padding-bottom: 25px;
+    color: #3a251b; 
+}
+.close-merits-button {
+    color: #7b684c; 
+    font-size: 45px; 
+    font-weight: normal;
+    position: absolute; 
+    top: 5px;
+    right: 25px;
+    z-index: 101;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+.close-merits-button:hover,
+.close-merits-button:focus {
+    color: #4a3328; 
+    text-decoration: none;
+    cursor: pointer;
+    transform: rotate(90deg);
+}
+/* ---------------------------------------------------------------- */
+/* --- LITERARY MERITS GRID STYLING (Same card size as Conventions) --- */
+/* --- 6 cards: 3 on top row, 3 on bottom row --- */
+/* ---------------------------------------------------------------- */
+.merits-modal .merit-icon-list {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: auto auto;
+    justify-content: center;
+    gap: 40px 75px;
+    padding: 20px 10px;
+}
+/* Position cards in grid - 3x2 layout */
+.merits-modal .merit-card:nth-child(1) { grid-column: 1; grid-row: 1; }
+.merits-modal .merit-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+.merits-modal .merit-card:nth-child(3) { grid-column: 3; grid-row: 1; }
+.merits-modal .merit-card:nth-child(4) { grid-column: 1; grid-row: 2; }
+.merits-modal .merit-card:nth-child(5) { grid-column: 2; grid-row: 2; }
+.merits-modal .merit-card:nth-child(6) { grid-column: 3; grid-row: 2; }
+.merits-modal .merit-card {
+    width: 150px;
+    min-height: 150px; 
+    position: static; 
+    padding: 15px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    text-align: center;
+    background-color: #e6d1ab;
+    border-radius: 8px;
+    border: 2px solid #7b684c;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s ease, 
+                background-color 0.4s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 2; 
+}
+.merits-modal .merit-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: #c5a676;
+}
+/* --- Icon Container --- */
+.merits-modal .merit-icon {
+    width: 70px; 
+    height: 70px;
+    margin-bottom: 6px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.merits-modal .merit-icon svg {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+}
+/* --- Hover Lighten Effect for SVG Icons --- */
+.merits-modal .merit-card:hover .merit-icon svg * {
+    stroke: rgba(255, 255, 255, 0.85) !important;
+    fill: rgba(255, 255, 255, 0.7) !important;
+    transition: all 0.3s ease-in-out;
+}
+.merits-modal .merit-card:hover .merit-icon svg [fill="none"] {
+    fill: none !important;
+}
+/* Title under icon */
+.merits-modal .merit-title {
+    font-weight: bold;
+    font-size: 1em;
+    color: #3a251b;
+    line-height: 1.2;
+}
+/* Active state */
+.merits-modal .merit-card.active {
+    background-color: #5d4029;
+    color: white;
+    border-color: #b58863;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(181, 136, 99, 0.9);
+}
+.merits-modal .merit-card.active .merit-title {
+    color: white;
+}
+.merits-modal .merit-card.active .merit-icon svg * {
+    stroke: white !important;
+}
+.merits-modal .merit-card.active .merit-icon svg circle,
+.merits-modal .merit-card.active .merit-icon svg polygon,
+.merits-modal .merit-card.active .merit-icon svg text,
+.merits-modal .merit-card.active .merit-icon svg path[fill]:not([fill="none"]),
+.merits-modal .merit-card.active .merit-icon svg ellipse {
+    fill: white !important;
+}
+/* ================================================================ */
+/* --- RESPONSIVE DESIGN FOR MOBILE & TABLET --- */
+/* ================================================================ */
+/* Large Desktop (1400px+) - Already optimized */
+/* Desktop & Large Tablets (1025px - 1400px) */
+@media (max-width: 1400px) {
+    .left-content h1 {
+        font-size: 5em;
+    }
+    
+    .left-content p {
+        font-size: 1.7em;
+    }
+    
+    .right-carousel {
+        left: 72%;
+    }
+}
+/* Tablet & Medium Screens (769px - 1024px) */
+@media (max-width: 1024px) {
+    .left-content {
+        max-width: 45%;
+        left: 4%;
+        top: 25%;
+    }
+    .left-content h1 {
+        font-size: 4em;
+    }
+    .left-content p {
+        font-size: 1.5em;
+    }
+    .right-carousel {
+        left: 70%;
+        width: 250px;
+        height: 240px;
+    }
+    .carousel-figure .card-text {
+        font-size: 1.3em;
+        padding: 16px;
+    }
+    /* Modal adjustments */
+    .modal-content {
+        width: 85%;
+        padding: 30px;
+    }
+    #modalTitle {
+        font-size: 2.4em;
+    }
+    /* School of thought grid */
+    .school-modal .concept-icon-list {
+        grid-template-columns: repeat(3, 130px);
+        gap: 30px 50px;
+    }
+    .school-modal .concept-card {
+        width: 130px;
+        min-height: 130px;
+        padding: 12px;
+    }
+    .school-modal .concept-icon {
+        width: 60px;
+        height: 60px;
+    }
+    /* Merits grid */
+    .merits-modal .merit-icon-list {
+        grid-template-columns: repeat(3, 130px);
+        gap: 30px 50px;
+    }
+    .merits-modal .merit-card {
+        width: 130px;
+        min-height: 130px;
+        padding: 12px;
+    }
+    .merits-modal .merit-icon {
+        width: 60px;
+        height: 60px;
+    }
+}
+/* Mobile Landscape & Small Tablets (481px - 768px) */
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+        background-position: center;
+    }
+    /* Stack layout vertically */
+    .left-content {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        text-align: center;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .left-content h1 {
+        font-size: 3.2em;
+        margin-bottom: 10px;
+    }
+    .left-content p {
+        font-size: 1.4em;
+        margin: 0;
+        margin-left: 0;
+    }
+    .right-carousel {
+        position: relative;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 30px auto 50px;
+        width: 260px;
+        height: 250px;
+    }
+    .carousel-figure .card-text {
+        font-size: 1.2em;
+        padding: 14px;
+    }
+    /* Modal adjustments */
+    .modal-content {
+        width: 92%;
+        margin: 3vh auto;
+        padding: 25px 20px;
+    }
+    #modalTitle {
+        font-size: 2.2em;
+        padding-bottom: 18px;
+    }
+    .close-button {
+        font-size: 38px;
+        right: 18px;
+    }
+    #modalText {
+        font-size: 1.05em;
+        max-height: 35vh;
+    }
+    /* Timeline */
+    .timeline-container {
+        gap: 10px;
+        margin: 12px auto;
+    }
+    .timeline-period {
+        padding: 8px 18px;
+        font-size: 0.95em;
+    }
+/* School of thought - stack as 2 columns */
+    .school-modal .concept-icon-list {
+        grid-template-columns: repeat(2, 140px);
+        grid-template-rows: auto auto auto;
+        gap: 25px 40px;
+    }
+    .school-modal .concept-card:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .school-modal .concept-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+    .school-modal .concept-card:nth-child(3) { grid-column: 1; grid-row: 2; }
+    .school-modal .concept-card:nth-child(4) { grid-column: 2; grid-row: 2; }
+    .school-modal .concept-card:nth-child(5) { grid-column: 1 / 3; grid-row: 3; place-self: center; }
+    .school-modal .concept-card {
+        width: 140px;
+        min-height: 140px;
+        padding: 12px;
+    }
+    .school-modal .concept-icon {
+        width: 55px;
+        height: 55px;
+    }
+    .school-modal .concept-title {
+        font-size: 0.95em;
+    }
+    /* Merits - 2 columns */
+    .merits-modal .merit-icon-list {
+        grid-template-columns: repeat(2, 140px);
+        grid-template-rows: auto auto auto;
+        gap: 25px 40px;
+    }
+    .merits-modal .merit-card:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .merits-modal .merit-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+    .merits-modal .merit-card:nth-child(3) { grid-column: 1; grid-row: 2; }
+    .merits-modal .merit-card:nth-child(4) { grid-column: 2; grid-row: 2; }
+    .merits-modal .merit-card:nth-child(5) { grid-column: 1; grid-row: 3; }
+    .merits-modal .merit-card:nth-child(6) { grid-column: 2; grid-row: 3; }
+    .merits-modal .merit-card {
+        width: 140px;
+        min-height: 140px;
+        padding: 12px;
+    }
+    .merits-modal .merit-icon {
+        width: 55px;
+        height: 55px;
+    }
+    .merits-modal .merit-title {
+        font-size: 0.95em;
+    }
+    /* Nested modals */
+    .nested-modal-content,
+    .bio-nested-modal-content,
+    .merits-nested-modal-content {
+        width: 85%;
+        margin: 8vh auto;
+        padding: 25px;
+    }
+    #nestedModalTitle,
+    #bioNestedModalTitle,
+    #meritsNestedModalTitle {
+        font-size: 1.6em;
+    }
+    #nestedModalText,
+    #bioNestedModalText,
+    #meritsNestedModalText {
+        font-size: 1.05em;
+    }
+    /* Poem modal */
+    .poem-modal-content {
+        width: 92%;
+        padding: 25px 20px;
+    }
+    #poemModalTitle {
+        font-size: 2.2em;
+    }
+    /* Summary modal */
+    .summary-modal-content {
+        width: 92%;
+        padding: 25px 20px;
+    }
+    #summaryModalTitle {
+        font-size: 2.2em;
+    }
+    /* Analysis modal */
+    .analysis-modal-content {
+        width: 92%;
+        padding: 25px 20px;
+    }
+    #analysisModalTitle {
+        font-size: 2.2em;
+    }
+    /* Merits modal */
+    .merits-modal-content {
+        width: 92%;
+        padding: 25px 20px;
+    }
+    #meritsModalTitle {
+        font-size: 2.2em;
+    }
+    /* Poem layout containers stack on tablet */
+    .poem-layout-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .highlight-stanza,
+    .stanza-description {
+        width: 100%;
+        padding: 15px;
+    }
+    .highlight-stanza {
+        margin-bottom: 15px;
+    }
+    .stanza-description {
+        padding-left: 0;
+    }
+    .rhyme-layout-container {
+        flex-direction: column;
+    }
+    .rhyme-stanza {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+/* MOBILE PORTRAIT - 320px to 480px */
+@media (max-width: 480px) {
+    /* Home section */
+    .left-content {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        text-align: center;
+        padding: 15px 10px;
+        margin-top: 15px;
+    }
+    
+    .left-content h1 {
+        font-size: 2.2em;
+        margin-bottom: 8px;
+    }
+    
+    .left-content p {
+        font-size: 1.1em;
+        margin-left: 0;
+    }
+    
+    /* Carousel - much smaller */
+    .right-carousel {
+        position: relative;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 20px auto 30px;
+        width: 180px;
+        height: 170px;
+    }
+    
+    .carousel-figure .card-text {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+    
+    /* Modal base */
+    .modal-content,
+    .bio-modal-content,
+    .poem-modal-content,
+    .summary-modal-content,
+    .analysis-modal-content,
+    .merits-modal-content {
+        width: 95%;
+        margin: 2vh auto;
+        padding: 15px 12px;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+    
+    /* Modal titles */
+    #modalTitle,
+    #bioModalTitle,
+    #poemModalTitle,
+    #summaryModalTitle,
+    #analysisModalTitle,
+    #meritsModalTitle {
+        font-size: 1.6em;
+        padding-bottom: 10px;
+        margin-bottom: 12px;
+    }
+    
+    /* Close buttons */
+    .close-button,
+    .close-bio-button,
+    .close-poem-button,
+    .close-summary-button,
+    .close-analysis-button,
+    .close-merits-button {
+        font-size: 28px;
+        right: 10px;
+        top: 3px;
+    }
+    
+    /* Modal text */
+    #modalText {
+        font-size: 0.95em;
+        line-height: 1.5;
+        max-height: 50vh;
+        text-indent: 1.5em;
+    }
+    
+    /* Timeline */
+    .timeline-container {
+        gap: 6px;
+        margin: 10px auto;
+    }
+    
+    .timeline-period {
+        padding: 6px 12px;
+        font-size: 0.75em;
+    }
+    
+    /* School of Thought - Single column */
+    .school-modal .concept-icon-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px 5px;
+    }
+    
+    .school-modal .concept-card {
+        width: 100%;
+        max-width: 250px;
+        min-height: auto;
+        margin: 0 auto;
+        padding: 15px;
+    }
+    
+    .school-modal .concept-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .school-modal .concept-title {
+        font-size: 0.95em;
+    }
+    
+    /* Merits - Single column */
+    .merits-modal .merit-icon-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px 5px;
+    }
+    
+    .merits-modal .merit-card {
+        width: 100%;
+        max-width: 250px;
+        min-height: auto;
+        margin: 0 auto;
+        padding: 15px;
+    }
+    
+    .merits-modal .merit-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .merits-modal .merit-title {
+        font-size: 0.95em;
+    }
+    
+    /* Nested modals */
+    .nested-modal-content,
+    .bio-nested-modal-content,
+    .merits-nested-modal-content {
+        width: 90%;
+        margin: 5vh auto;
+        padding: 20px 15px;
+        max-height: 75vh;
+        overflow-y: auto;
+    }
+    
+    #nestedModalTitle,
+    #bioNestedModalTitle,
+    #meritsNestedModalTitle {
+        font-size: 1.3em;
+        padding-bottom: 8px;
+    }
+    
+    #nestedModalText,
+    #bioNestedModalText,
+    #meritsNestedModalText {
+        font-size: 0.95em;
+        line-height: 1.6;
+        text-indent: 1.5em;
+    }
+    
+    .close-nested-button,
+    .close-bio-nested-button,
+    .close-merits-nested-button {
+        font-size: 25px;
+        right: 10px;
+    }
+    
+    /* Biography carousel */
+    .bio-carousel {
+        padding: 10px 35px;
+        max-width: 100%;
+    }
+    
+    .bio-item {
+        padding: 15px 10px;
+    }
+    
+    .bio-item img {
+        max-width: 100%;
+        height: 200px;
+    }
+    
+    .bio-caption {
+        font-size: 1em;
+    }
+    
+    .bio-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 1.3em;
+    }
+    
+    .bio-arrow-left {
+        left: 2px;
+    }
+    
+    .bio-arrow-right {
+        right: 2px;
+    }
+    
+    .bio-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    /* Summary carousel */
+    .summary-carousel-container {
+        margin: 0 35px;
+        height: 320px;
+    }
+    
+    .summary-slide {
+        padding: 15px 20px;
+    }
+    
+    .summary-slide-header {
+        margin-bottom: 10px;
+        padding-right: 15px;
+    }
+    
+    .summary-slide-title {
+        font-size: 1.2em;
+    }
+    
+    .summary-slide-text {
+        font-size: 0.9em;
+        line-height: 1.55;
+        text-indent: 1.5em;
+    }
+    
+    .summary-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 1.3em;
+    }
+    
+    .summary-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    /* Analysis carousel */
+    .analysis-carousel-container {
+        margin: 0 35px;
+        height: 320px;
+    }
+    
+    .analysis-slide {
+        padding: 15px 20px;
+    }
+    
+    .analysis-slide-header {
+        margin-bottom: 10px;
+        padding-right: 15px;
+    }
+    
+    .analysis-slide-title {
+        font-size: 1.2em;
+    }
+    
+    .analysis-slide-text {
+        font-size: 0.9em;
+        line-height: 1.55;
+    }
+    
+    .analysis-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 1.3em;
+    }
+    
+    .analysis-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    /* Poem layouts */
+    .poem-layout-container {
+        flex-direction: column;
+        margin-top: 5px;
+    }
+    
+    .highlight-stanza,
+    .stanza-description {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.9em;
+    }
+    
+    .highlight-stanza {
+        margin: 10px 0 15px 0;
+    }
+    
+    .stanza-description {
+        padding-left: 0;
+    }
+    
+    .rhyme-layout-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .rhyme-stanza {
+        width: 100%;
+        min-width: 100%;
+        font-size: 0.9em;
+        padding: 12px;
+    }
+}
+
+/* MOBILE LANDSCAPE & SMALL TABLETS - 481px to 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+    .left-content {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        text-align: center;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    
+    .left-content h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+    }
+    
+    .left-content p {
+        font-size: 1.3em;
+        margin-left: 0;
+    }
+    
+    .right-carousel {
+        position: relative;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 25px auto 40px;
+        width: 220px;
+        height: 210px;
+    }
+    
+    .carousel-figure .card-text {
+        font-size: 1.1em;
+        padding: 12px;
+    }
+    
+    .modal-content,
+    .bio-modal-content,
+    .poem-modal-content,
+    .summary-modal-content,
+    .analysis-modal-content,
+    .merits-modal-content {
+        width: 90%;
+        padding: 25px 20px;
+    }
+    
+    #modalTitle,
+    #bioModalTitle,
+    #poemModalTitle,
+    #summaryModalTitle,
+    #analysisModalTitle,
+    #meritsModalTitle {
+        font-size: 2em;
+    }
+    
+    /* School of thought - 2 columns */
+    .school-modal .concept-icon-list {
+        grid-template-columns: repeat(2, 130px);
+        gap: 20px 30px;
+    }
+    
+    .school-modal .concept-card {
+        width: 130px;
+        min-height: 130px;
+        padding: 12px;
+    }
+    
+    .school-modal .concept-icon {
+        width: 55px;
+        height: 55px;
+    }
+    
+    /* Merits - 2 columns */
+    .merits-modal .merit-icon-list {
+        grid-template-columns: repeat(2, 130px);
+        gap: 20px 30px;
+    }
+    
+    .merits-modal .merit-card {
+        width: 130px;
+        min-height: 130px;
+        padding: 12px;
+    }
+    
+    .merits-modal .merit-icon {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+/* TABLETS - 769px to 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .left-content {
+        max-width: 45%;
+        left: 4%;
+        top: 25%;
+    }
+    
+    .left-content h1 {
+        font-size: 4em;
+    }
+    
+    .left-content p {
+        font-size: 1.5em;
+    }
+    
+    .right-carousel {
+        left: 70%;
+        width: 250px;
+        height: 240px;
+    }
+    
+    .carousel-figure .card-text {
+        font-size: 1.3em;
+        padding: 16px;
+    }
+    
+    .modal-content {
+        width: 85%;
+        padding: 30px;
+    }
+    
+    /* School of thought - 3 columns */
+    .school-modal .concept-icon-list {
+        grid-template-columns: repeat(3, 130px);
+        gap: 30px 50px;
+    }
+    
+    .school-modal .concept-card {
+        width: 130px;
+        min-height: 130px;
+        padding: 12px;
+    }
+    
+    /* Merits - 3 columns */
+    .merits-modal .merit-icon-list {
+        grid-template-columns: repeat(3, 130px);
+        gap: 30px 50px;
+    }
+    
+    .merits-modal .merit-card {
+        width: 130px;
+        min-height: 130px;
+        padding: 12px;
+    }
+}
+
+/* LANDSCAPE MOBILE FIX */
+@media (max-height: 500px) and (orientation: landscape) {
+    .left-content {
+        margin-top: 10px;
+        padding: 10px;
+    }
+    
+    .left-content h1 {
+        font-size: 2em;
+        margin-bottom: 5px;
+    }
+    
+    .left-content p {
+        font-size: 1em;
+    }
+    
+    .right-carousel {
+        margin: 15px auto 25px;
+        width: 180px;
+        height: 170px;
+    }
+    
+    .modal-content {
+        margin: 2vh auto;
+        max-height: 90vh;
+    }
+    
+    .summary-carousel-container,
+    .analysis-carousel-container {
+        height: 200px;
+    }
+}
